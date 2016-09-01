@@ -1,4 +1,4 @@
-var numberOfTests = 2;
+var numberOfTests = 3;
 
 casper.test.begin('Testing Good Reads', numberOfTests, function(test) {
 
@@ -9,6 +9,15 @@ casper.test.begin('Testing Good Reads', numberOfTests, function(test) {
       'query' : '1984'
     }, true);
   });
+
+  casper.wait(3000, function() {
+    this.capture('bookSearch/goodReadsTry1.png');
+    test.comment('book search saved in png');
+  });
+
+  // casper.then(3000, function() {
+  //   test.assertExists('div[class="wtrDown wtrLeft wtrStatusReadingNow"]', 'Set Book to currently-reading');
+  // });
 
   casper.run(function() {
     test.done();
