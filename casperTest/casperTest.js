@@ -1,3 +1,5 @@
+var envVars = require('system').env;
+
 casper.test.begin('Testing Good Reads', 8, function(test) {
 
   casper.start('https://www.goodreads.com/', function() {
@@ -27,7 +29,7 @@ casper.test.begin('Testing Good Reads', 8, function(test) {
 
   casper.wait(3000, function() {
     this.capture('casperTest/homePage.png');
-    console.log('back to the home page');
+    test.comment('back to the home page');
   });
 
   casper.then(function() {
@@ -37,19 +39,18 @@ casper.test.begin('Testing Good Reads', 8, function(test) {
       'user[email]' : 'joe@boom.com',
       'user[password]' : 'password'
     });
+    test.comment('User Sign Up Form filled');
   });
 
   casper.wait(3000, function() {
     casper.capture('casperTest/enterInfo.png');
-    console.log('entered in user information');
+    test.comment('entered in user information');
   });
 
   casper.then(function() {
     test.assertExists('input[value="Sign up"]', 'sign up button exists');
     this.click('input[value="Sign up"]')
   });
-
-  // test.assertUrlMatch(/contact/, 'New location is ' + this.getCurrentUrl());
 
   casper.wait(3000,function() {
     casper.capture('casperTest/grBookResults.png');

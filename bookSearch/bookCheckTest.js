@@ -45,6 +45,11 @@ casper.wait(3000, function() {
 });
 
 casper.then(function() {
+  casper.click('div[title="Next Page"]');
+  console.log('Next page button clicked');
+})
+
+casper.then(function() {
   casper.exit();
 });
 
